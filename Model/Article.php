@@ -88,7 +88,7 @@ class Article
 
     public function setCreationDate($creationDate)
     {   
-        if (!empty(($creationDate)) {
+        if (!empty($creationDate)) {
             $this->creationDate = $creationDate;
         }        
     }

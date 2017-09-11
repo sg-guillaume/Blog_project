@@ -74,7 +74,7 @@ class Article_manager
 				'lastname'	=> $article->getLastname(),
 				'title'		=> $article->getTitle(),
 				'content'	=> $article->getContent()
-			));
+				));
 
 	}
 
@@ -86,8 +86,15 @@ class Article_manager
 		 * Execution de la requete
 		 */
 
-		$requete = $this->dbInstance->prepare("UPDATE Article(firstname, lastname, title, content, creationDate)");
-											   
+		$requete = $this->dbInstance->prepare("UPDATE Article 
+											   SET firstname = :firstname, lastname = :lastname, title = title, content = :content, creationDate = NOW() WHERE id = :id");
+		$requete->execute(array(
+				'firstname' => $article->getFirstname(),
+				'lastname'	=> $article->getLastname(),
+				'title'		=> $article->getTitle(),
+				'content'	=> $article->getContent(),
+				'id' 		=> $article->getId()
+				));
 	}
 
 	public function deleteArticle(Article $article)
@@ -95,5 +102,7 @@ class Article_manager
 		/**
 		 * Execution d'une requete de type DELETE
 		 */
+		$this->dbInstance->exec("DELETE FROM Article WHERE id = " . $article->getId());
+
 	}
 }
