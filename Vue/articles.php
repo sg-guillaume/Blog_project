@@ -1,34 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<title>Accueil</title>
-
-	<!--Import Google Icon Font-->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<!-- Compiled and minified CSS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-	
-	<!-- Compiled and minified JavaScript -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+	<?php include 'head.php'; ?>
 </head>
 <body>
 
 	<header>
 		
-		<nav>
-		  <div class="nav-wrapper">
-		    <a href="#" class="brand-logo">Jean Forteroche</a>
-		    <ul id="nav-mobile" class="right hide-on-med-and-down">
-		      <li><a href="#">Biographie</a></li>
-		      <li><a href="#">Chapitres</a></li>
-		      <li><a href="#">Contact</a></li>
-		      <li><a href="#">Inscription</a></li>
-		    </ul>
-		  </div>
-		</nav>
+		<?php include 'nav.php'; ?>
 		      
 	</header>
 	<div class="container center-align">
@@ -38,11 +17,11 @@
 
 
 	<main>
-		<section class="section">
+		<section class="container section">
 			<div class="row">
 			<?php foreach ($articles as $article): ?>
 				
-				  <div class="col s12 m4">
+				  <div class="col s12 m12">
 				    <ul class="collapsible hoverable" data-collapsible="accordion">
 				    	<li>
 					      <div class="collapsible-header">
@@ -53,7 +32,8 @@
 					      </div>
 					      
 					      <div class="collapsible-body">
-					        <p><?= $article->getContent(); ?></p>
+					        <p class="truncate"><?= $article->getContent(); ?></p>
+					        <a href="./index?id=<?= $article->getId(); ?>">Lire le chapitre</a>
 					      </div>
 					    </li>
 				    </ul>
@@ -63,6 +43,6 @@
 			</div>
 		</section>
 	</main>
-	
+	<?php include 'footer.php'; ?>
 </body>
 </html>
