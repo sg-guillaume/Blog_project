@@ -2,17 +2,17 @@
 <html>
 <head>
 	<?php include 'head.php'; ?>
+	
 </head>
-<body style="display: flex;
-  min-height: 100vh;
-  flex-direction: column;">
+<body>
 	
 	<header>
 		<?php include 'nav.php'; ?>
 	</header>
-	<main style="flex: 1 0 auto;">
+	<main>
 		<h1>Bienvenue sur le blog de Jeand Forteroche</h1>
 	</main>
 	<?php include 'footer.php'; ?>
+	<?php include 'js-script.php'; ?>
 </body>
 </html>

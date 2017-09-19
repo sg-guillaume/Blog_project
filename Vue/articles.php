@@ -33,7 +33,7 @@
 					      
 					      <div class="collapsible-body">
 					        <p class="truncate"><?= $article->getContent(); ?></p>
-					        <a href="./index?id=<?= $article->getId(); ?>">Lire le chapitre</a>
+					        <a href="./index.php?id=<?= $article->getId(); ?>">Lire le chapitre</a>
 					      </div>
 					    </li>
 				    </ul>
@@ -44,5 +44,6 @@
 		</section>
 	</main>
 	<?php include 'footer.php'; ?>
+	<?php include 'js-script.php'; ?>
 </body>
 </html>

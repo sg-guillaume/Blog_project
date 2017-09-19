@@ -55,7 +55,7 @@ class Article_manager
 											 WHERE id =" . $id);
 
 		$data = $requete->fetch(PDO::FETCH_ASSOC);
-
+		
 		return new Article($data);
 	}
 

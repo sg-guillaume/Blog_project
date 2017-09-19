@@ -15,8 +15,15 @@ class Article_controlleur
 		$requete = new Article_manager($instance);
 		$articles = $requete->getAllArticle();
 		require(APP_ROOT . '/Vue/articles.php');
-		return $articles;
+		//return $articles;
 	}
 
-
+	public function getOne($id)
+	{
+		$instance = Database::getDatabase();
+		$requete = new Article_manager($instance);
+		$article = $requete->getArticle($id);
+		require(APP_ROOT . '/Vue/one_article.php');
+		return $article;		
+	}
 }
