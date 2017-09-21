@@ -22,8 +22,10 @@ class Article_controlleur
 	{
 		$instance = Database::getDatabase();
 		$requete = new Article_manager($instance);
-		$article = $requete->getArticle($id);
+		$articles = $requete->getArticle($id);
+		$article = $articles[0];
+		$comments = $articles[1];
 		require(APP_ROOT . '/Vue/one_article.php');
-		return $article;		
+		return $articles;		
 	}
 }

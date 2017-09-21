@@ -10,6 +10,8 @@ class Comment
     protected $lastname;
     protected $content;
     protected $creationDate;
+    protected $reported;
+    protected $articleId;
 
     public function __construct(Array $data)
     {
@@ -39,6 +41,16 @@ class Comment
     public function getCreationDate()
     {
         return $this->creationDate;
+    }
+
+    public function getReported()
+    {
+        return $this->reported;
+    }
+
+    public function getArticleId()
+    {
+        return $this->articleId;
     }
 
     public function setId($id)
@@ -77,6 +89,16 @@ class Comment
     public function getAuthor()
     {
         return $this->getFirstname() . " " . $this->getLastname();
+    }
+
+    public function setReported($reported)
+    {
+        $this->reported = $reported;
+    }
+
+    public function setArticleId($articleId)
+    {
+        $this->articleId = $articleId;
     }
 
     public function hydrate($data)

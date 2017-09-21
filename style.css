@@ -6,4 +6,9 @@ body {
 
 main {
 	flex: 1 0 auto;
+	padding: 5px;
+}
+
+nav a.brand-logo {
+	margin-left: 5px;
 }

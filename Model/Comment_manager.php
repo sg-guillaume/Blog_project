@@ -22,12 +22,12 @@ class Comment_manager
 		$this->dbInstance = $dbInstance;
 	}
 
-	public function getAllComment()
+	public function getAllComment($articleId)
 	{
 		$comments = [];
 
 		$requete = $this->dbInstance->query("SELECT id, firstname, lastname, content, creationDate 
-											 FROM Comment");
+											 FROM Comment WHERE articleId =" . $articleId);
 
 		while ($data = $requete->fetch(PDO::FETCH_ASSOC))
 		{

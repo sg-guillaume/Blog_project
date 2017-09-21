@@ -1,6 +1,7 @@
 <?php
 
 require_once('Article.php');
+require_once('Comment.php');
 
 /**
 * Article Manager class CRUD for articles
@@ -50,13 +51,37 @@ class Article_manager
 
 	public function getArticle($id)
 	{		
-		$requete = $this->dbInstance->query("SELECT id, firstname, lastname, title, content, creationDate 
-											 FROM Article 
-											 WHERE id =" . $id);
+		$comments = [];
+		$requete = $this->dbInstance->query("SELECT Article.id, Article.firstname, Article.lastname, Article.title, Article.content, Article.creationDate, Comment.id comment_id, Comment.firstname comment_firstname, Comment.lastname comment_lastname, Comment.content comment_content, Comment.creationDate comment_creationDate
+											 FROM Article
+											 RIGHT OUTER JOIN Comment
+											 ON Article.id = Comment.articleId
+											 WHERE Article.id  =" . $id);
 
-		$data = $requete->fetch(PDO::FETCH_ASSOC);
-		
-		return new Article($data);
+		$data = $requete->fetchAll(PDO::FETCH_ASSOC);
+		echo '<pre>';
+		print_r($data); die;
+		echo '</pre>';
+		$article = new Article([
+							'id' 			=> $data[0]['id'],
+							'firstname' 	=> $data[0]['firstname'],
+							'lastname'		=> $data[0]['lastname'],
+							'title'			=> $data[0]['title'],
+							'content'		=> $data[0]['content'],
+							'creationDate' 	=> $data[0]['creationDate']
+							]);
+
+		foreach ($data as $comment) {
+			
+			$comments[] = new Comment([
+							'id'			=> $comment['comment_id'],
+							'firstname'		=> $comment['comment_firstname'],
+							'lastname'		=> $comment['comment_lastname'],
+							'content'		=> $comment['comment_content'],
+							'creationDate' 	=> $comment['comment_creationDate']
+							]);
+		}
+		return [$article, $comments];
 	}
 
 	public function addArticle(Article $article)
