@@ -16,6 +16,8 @@ class Article
     private $content;
     private $creationDate;
 
+    private $comments = [];
+
     public function __construct(Array $data)
     {
         $this->hydrate($data);
@@ -49,6 +51,11 @@ class Article
     public function getCreationDate()
     {
         return $this->creationDate;
+    }
+
+    public function getComments()
+    {
+        return $this->comments;
     }
 
     public function setId($id)
@@ -111,5 +118,10 @@ class Article
         }
 
         return $this;
+    }
+
+    public function setComments($comment)
+    {
+        $this->comments[] = $comment;
     }
 }

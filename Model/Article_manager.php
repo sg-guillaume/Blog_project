@@ -51,17 +51,14 @@ class Article_manager
 
 	public function getArticle($id)
 	{		
-		$comments = [];
-		$requete = $this->dbInstance->query("SELECT Article.id, Article.firstname, Article.lastname, Article.title, Article.content, Article.creationDate, Comment.id comment_id, Comment.firstname comment_firstname, Comment.lastname comment_lastname, Comment.content comment_content, Comment.creationDate comment_creationDate
-											 FROM Article
-											 RIGHT OUTER JOIN Comment
-											 ON Article.id = Comment.articleId
-											 WHERE Article.id  =" . $id);
+		
+		$requete = $this->dbInstance->query("SELECT a.id, a.firstname, a.lastname, a.title, a.content, a.creationDate, c.id comment_id, c.firstname comment_firstname, c.lastname comment_lastname, c.content comment_content, c.creationDate comment_creationDate
+											 FROM Article a
+											 LEFT JOIN Comment c
+											 ON a.id = c.articleId
+											 WHERE a.id =" . $id);
 
 		$data = $requete->fetchAll(PDO::FETCH_ASSOC);
-		echo '<pre>';
-		print_r($data); die;
-		echo '</pre>';
 		$article = new Article([
 							'id' 			=> $data[0]['id'],
 							'firstname' 	=> $data[0]['firstname'],
@@ -73,15 +70,16 @@ class Article_manager
 
 		foreach ($data as $comment) {
 			
-			$comments[] = new Comment([
+			$newComment = new Comment([
 							'id'			=> $comment['comment_id'],
 							'firstname'		=> $comment['comment_firstname'],
 							'lastname'		=> $comment['comment_lastname'],
 							'content'		=> $comment['comment_content'],
 							'creationDate' 	=> $comment['comment_creationDate']
 							]);
+			$article->setComments($newComment);
 		}
-		return [$article, $comments];
+		return $article;
 	}
 
 	public function addArticle(Article $article)

@@ -29,7 +29,7 @@
 					      </div>
 					    </li>
 				    </ul>
-					<?php foreach ($comments as $comment) : ?>
+					<?php foreach ($article->getComments() as $comment) : ?>
 				   		<div class="section">
 							<p><?= $comment->getAuthor(); ?></p>
 							<p><?= $comment->getCreationDate(); ?></p>
