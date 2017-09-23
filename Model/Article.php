@@ -120,7 +120,7 @@ class Article
         return $this;
     }
 
-    public function setComments($comment)
+    public function setComments(Comment $comment)
     {
         $this->comments[] = $comment;
     }

@@ -2,6 +2,7 @@
 
 	define('APP_ROOT', __DIR__);
 	require_once('Controler/Article_controler.php');
+	require_once('Controler/Comment_controler.php');
 	require_once('Controler/Landing_page_controler.php');
 
 
@@ -11,13 +12,20 @@
 	}
 
 	if (isset($_GET['chapters'])) {
-		$article = new Article_controlleur();
+		$article = new Article_controler();
 		$article->getAll();
 	}
 
 	if (isset($_GET['id'])) {
-		$article = new Article_controlleur();
+		$article = new Article_controler();
 		$article->getOne($_GET['id']);		
+	}
+
+	if (isset($_GET['repCom']) && isset($_GET['artId'])) {
+		$comment = new Comment_controler();
+		$comment->reportedComment($_GET['repCom']);
+		$article = new Article_controler();
+		header("Location " . $article->getOne($_GET['artId']));
 	}
 
 	/*

@@ -52,7 +52,7 @@ class Article_manager
 	public function getArticle($id)
 	{		
 		
-		$requete = $this->dbInstance->query("SELECT a.id, a.firstname, a.lastname, a.title, a.content, a.creationDate, c.id comment_id, c.firstname comment_firstname, c.lastname comment_lastname, c.content comment_content, c.creationDate comment_creationDate
+		$requete = $this->dbInstance->query("SELECT a.id, a.firstname, a.lastname, a.title, a.content, a.creationDate, c.id comment_id, c.firstname comment_firstname, c.lastname comment_lastname, c.content comment_content, c.creationDate comment_creationDate, c.articleId articleId
 											 FROM Article a
 											 LEFT JOIN Comment c
 											 ON a.id = c.articleId
@@ -75,7 +75,8 @@ class Article_manager
 							'firstname'		=> $comment['comment_firstname'],
 							'lastname'		=> $comment['comment_lastname'],
 							'content'		=> $comment['comment_content'],
-							'creationDate' 	=> $comment['comment_creationDate']
+							'creationDate' 	=> $comment['comment_creationDate'],
+							'articleId'		=> $comment['articleId']
 							]);
 			$article->setComments($newComment);
 		}

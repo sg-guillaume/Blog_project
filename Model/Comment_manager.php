@@ -27,7 +27,8 @@ class Comment_manager
 		$comments = [];
 
 		$requete = $this->dbInstance->query("SELECT id, firstname, lastname, content, creationDate 
-											 FROM Comment WHERE articleId =" . $articleId);
+											 FROM Comment 
+											 WHERE articleId =" . $articleId);
 
 		while ($data = $requete->fetch(PDO::FETCH_ASSOC))
 		{
@@ -86,6 +87,14 @@ class Comment_manager
 				'content'	=> $comment->getContent(),
 				'id' 		=> $comment->getId()
 				));
+	}
+
+	public function reportUpdate($commentId)
+	{	
+		$requete = $this->dbInstance->prepare("UPDATE Comment 
+											   SET reported = TRUE
+											   WHERE id=" . $commentId);
+		$requete->execute();
 	}
 
 	public function deleteComment(Comment $comment)
