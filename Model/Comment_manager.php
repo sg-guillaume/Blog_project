@@ -53,7 +53,7 @@ class Comment_manager
 		return new Comment($data);
 	}
 
-	public function addComment(Comment $comment)
+	public function addComment(Array $data)
 	{
 		/**
 		 * Preparation requete INSERT INTO
@@ -61,12 +61,13 @@ class Comment_manager
 		 * Execution de la requete
 		 */
 
-		$requete = $this->dbInstance->prepare("INSERT INTO Comment(firstname, lastname, content, creationDate) 
-											   VALUES(:firstname, :lastname, :content, NOW())");
+		$requete = $this->dbInstance->prepare("INSERT INTO Comment(firstname, lastname, content, creationDate, articleId) 
+											   VALUES(:firstname, :lastname, :content, NOW(), :articleId)");
 		$requete->execute(array(
-				'firstname' => $comment->getFirstname(),
-				'lastname'	=> $comment->getLastname(),
-				'content'	=> $comment->getContent()
+				'firstname' => $data['firstname'],
+				'lastname'	=> $data['lastname'],
+				'content'	=> $data['content'],
+				'articleId'	=> $data['articleId']
 				));
 
 	}

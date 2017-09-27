@@ -55,7 +55,9 @@ class Comment
 
     public function setId($id)
     {   
-        $this->id = $id;
+        if (!empty($id)) {
+            $this->id = $id;
+        }
     }
 
     public function setFirstname($firstname)
@@ -92,13 +94,17 @@ class Comment
     }
 
     public function setReported($reported)
-    {
-        $this->reported = $reported;
+    {   
+        if (!empty($reported)) {
+            $this->reported = $reported;
+        }
     }
 
     public function setArticleId($articleId)
     {
-        $this->articleId = $articleId;
+        if (!empty($articleId)) {
+            $this->articleId = $articleId;
+        }
     }
 
     public function hydrate($data)

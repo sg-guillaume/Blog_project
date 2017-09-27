@@ -18,8 +18,9 @@ class Article_controler
 		//return $articles;
 	}
 
-	public function getOne($id)
-	{
+	public function getOne($id, $error = NULL)
+	{	
+		$tabError = $error;
 		$instance = Database::getDatabase();
 		$requete = new Article_manager($instance);
 		$article = $requete->getArticle($id);
