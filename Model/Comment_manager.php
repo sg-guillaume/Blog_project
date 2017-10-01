@@ -53,6 +53,19 @@ class Comment_manager
 		return new Comment($data);
 	}
 
+	public function getReported()
+	{
+		$reported = [];
+		$requete = $this->dbInstance->query("SELECT id, firstname, lastname, content, creationDate
+											 FROM Comment
+											 WHERE reported = TRUE");
+		while ($data = $requete->fetch(PDO::FETCH_ASSOC)) 
+		{
+			$reported[] = new Comment($data);
+		}
+		return $reported;
+	}
+
 	public function addComment(Array $data)
 	{
 		/**

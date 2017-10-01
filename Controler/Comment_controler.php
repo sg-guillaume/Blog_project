@@ -24,4 +24,14 @@ class Comment_controler
     	$requete = new Comment_manager($instance);
     	$requete->reportUpdate($commentId);
     }
+
+    public function getOne($id, $error = NULL)
+    {   
+        $tabError = $error;
+        $instance = Database::getDatabase();
+        $requete = new Comment_manager($instance);
+        $comment = $requete->getComment($id);
+        require(APP_ROOT . '/Vue/one_comment.php');
+        //return $comment;      
+    }
 }

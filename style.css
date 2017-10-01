@@ -12,3 +12,12 @@ main {
 nav a.brand-logo {
 	margin-left: 5px;
 }
+
+.tiny {
+	font-size: 1.3rem !important;
+	margin-left: 1rem;
+}
+
+.collection-item {
+	padding: 10px !important;
+}

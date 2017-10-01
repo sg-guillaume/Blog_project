@@ -26,7 +26,7 @@
 			      
 			      <div class="collapsible-body">
 			        <div class="row">
-			          <form class="col s12 m12" method="post" action="./index.php?add">
+			          <form class="col s12 m12" method="post" action="./index.php?addComment">
 			            <div class="row">
 			            	<input type="hidden" name="articleId" value=<?= $article->getId(); ?>>
 			              <div class="input-field col s6 m6">
@@ -59,17 +59,15 @@
 			    </li>
 		    </ul>
 			<?php foreach ($article->getComments() as $comment) : ?>
-		   		<div class="section">
-					<p><?= $comment->getAuthor(); ?></p>
-					<p><?= $comment->getCreationDate(); ?></p>
+		   		<div class="section left-align">
+					<span><?= $comment->getAuthor(); ?></span>
+					<span><?= $comment->getCreationDate(); ?></span>
 						<a href="./index.php?repCom=<?= $comment->getId(); ?>&artId=<?= $comment->getArticleId(); ?>">
-							<button class="btn-floating red" type="reset" name="action">
-						    	<i class="material-icons center red">report</i>
-							</button>
+							<i class="material-icons tiny red-text">error</i>
 						</a>
-					<article>
+					<p>
 						<?= $comment->getContent(); ?>
-					</article>
+					</p>
 				<div class="divider"></div>	
 			  	</div>
 			<?php endforeach; ?>

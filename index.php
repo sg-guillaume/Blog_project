@@ -5,6 +5,7 @@
 	require_once('Controler/Comment_controler.php');
 	require_once('Controler/Form_controler.php');
 	require_once('Controler/Landing_page_controler.php');
+	require_once('Controler/Admin_controler.php');
 
 
 
@@ -19,10 +20,6 @@
 		$article->getAll();
 	}
 
-	if (isset($_GET['sign-in'])) {
-		$admin = new Admin_controler();
-	}
-
 	if (isset($_GET['id'])) {
 		$article->getOne($_GET['id']);		
 	}
@@ -33,7 +30,7 @@
 		$article->getOne($_GET['artId']);
 	}
 
-	if (isset($_GET['add']) && !empty($_POST)) {
+	if (isset($_GET['addComment']) && !empty($_POST)) {
 		$control = new Validator($_POST);
 		$tabError = $control->getTabError();
 		if (empty($tabError)) {
@@ -49,8 +46,14 @@
 	/*
 	if (isset($_GET['contact'])) {
 		$contact = new Form('Nom', 'Prenom', 'Email', 'Message');
+	}*/
+
+	if (isset($_GET['sign-in'])) {
+		$admin = new Admin_controler();
+		$admin->adminPage();
 	}
 
-	if (isset($_GET['sign_in'])) {
-		$contact = new Form('Email', 'Mot de passe');
-	}*/ 	
+	if (isset($_GET['commentId'])) {
+		$comment = new Comment_controler();
+		$comment->getOne($_GET['commentId']);		
+	}
