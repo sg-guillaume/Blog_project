@@ -121,7 +121,9 @@ class Article
     }
 
     public function setComments(Comment $comment)
-    {
-        $this->comments[] = $comment;
+    {   
+        if (!empty($comment)) {
+            $this->comments[] = $comment;
+        }
     }
 }

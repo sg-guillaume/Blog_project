@@ -63,21 +63,21 @@ class Comment
     public function setFirstname($firstname)
     {   
         if (!empty(trim($firstname))) {
-            $this->firstname = htmlspecialchars($firstname);
+            $this->firstname = $firstname;
         }        
     }
 
     public function setLastname($lastname)
     {
         if (!empty(trim($lastname))) {
-            $this->lastname = htmlspecialchars($lastname);
+            $this->lastname = $lastname;
         }
     }
 
     public function setContent($content)
     {
         if (!empty(trim($content))) {
-            $this->content = htmlspecialchars($content);
+            $this->content = $content;
         }
     }
 

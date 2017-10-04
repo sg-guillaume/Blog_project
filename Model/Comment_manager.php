@@ -77,15 +77,15 @@ class Comment_manager
 		$requete = $this->dbInstance->prepare("INSERT INTO Comment(firstname, lastname, content, creationDate, articleId) 
 											   VALUES(:firstname, :lastname, :content, NOW(), :articleId)");
 		$requete->execute(array(
-				'firstname' => $data['firstname'],
-				'lastname'	=> $data['lastname'],
-				'content'	=> $data['content'],
-				'articleId'	=> $data['articleId']
+				'firstname' => htmlspecialchars($data['firstname']),
+				'lastname'	=> htmlspecialchars($data['lastname']),
+				'content'	=> htmlspecialchars($data['content']),
+				'articleId'	=> htmlspecialchars($data['articleId'])
 				));
 
 	}
 
-	public function updateComment(Comment $comment)
+	public function updateComment(Array $comment)
 	{
 		/**
 		 * Préparation requete UPDATE
@@ -94,12 +94,10 @@ class Comment_manager
 		 */
 
 		$requete = $this->dbInstance->prepare("UPDATE Comment 
-											   SET firstname = :firstname, lastname = :lastname, content = :content, creationDate = NOW() WHERE id = :id");
+											   SET content = :content, reported = :reported, creationDate = NOW() WHERE id =" . $comment['comId']);
 		$requete->execute(array(
-				'firstname' => $comment->getFirstname(),
-				'lastname'	=> $comment->getLastname(),
-				'content'	=> $comment->getContent(),
-				'id' 		=> $comment->getId()
+				'content'	=> $comment['content'],
+				'reported'	=> $comment['reported']
 				));
 	}
 
@@ -111,12 +109,12 @@ class Comment_manager
 		$requete->execute();
 	}
 
-	public function deleteComment(Comment $comment)
+	public function deleteComment($commentId)
 	{
 		/**
 		 * Execution d'une requete de type DELETE
 		 */
-		$this->dbInstance->exec("DELETE FROM Comment WHERE id = " . $comment->getId());
+		$this->dbInstance->exec("DELETE FROM Comment WHERE id = " . $commentId);
 
 	}
 }

@@ -27,4 +27,26 @@ class Article_controler
 		require(APP_ROOT . '/Vue/one_article.php');
 		//return $article;		
 	}
+
+	public function editArticle($id)
+    {
+        $instance = Database::getdatabase();
+        $article = new Article_manager($instance);
+        $editArticle = $article->getArticle($id);
+        require(APP_ROOT . '/Vue/editPage.php');
+    }
+
+    public function updateArticle($data, $id)
+    {
+    	$instance = Database::getdatabase();
+        $article = new Article_manager($instance);
+        $article->updateArticle($data, $id);
+    }
+
+    public function deleteArticle($id)
+    {
+    	$instance = Database::getdatabase();
+        $article = new Article_manager($instance);
+        $article->deleteArticle($id);
+    }
 }

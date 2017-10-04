@@ -60,28 +60,28 @@ class User
 	public function setFirstname($firstname)
 	{
 		if (!empty(trim($firstname))) {
-			$this->firstname = htmlspecialchars($firstname);
+			$this->firstname = $firstname;
 		}
 	}
 
 	public function setLastname($lastname)
 	{
 		if (!empty(trim($lastname))) {
-			$this->lastname = htmlspecialchars($lastname);
+			$this->lastname = $lastname;
 		}		
 	}
 
 	public function setEmail($email)
 	{
 		if (!empty(trim($email)) && $email /* répond à la regex */) {
-			$this->email = htmlspecialchars($email);
+			$this->email = $email;
 		}
 	}
 
 	public function setPassword($password)
 	{
 		if (!empty(trim($password))) {
-			$this->password = $password; //crypter le mot de passe avant insertion en bdd... crypt() ou crypt(blowfish) ?
+			$this->password = $password;
 		}		
 	}
 

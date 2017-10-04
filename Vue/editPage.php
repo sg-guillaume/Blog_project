@@ -8,20 +8,17 @@
 		<?php include 'navadmin.php'; ?>
 	</header>
 	<main>
-		<div class="container">
-			<p>
-				<span>Commentaire de : </span>
-				<span><?= $comment->getAuthor(); ?></span>
-			</p>		
-			<form method="post" action="./index.php?comEdit">
+		<div class="container">		
+			<form method="post" action="./index.php?artEdit">
+				<label for="title">Titre du chapitre</label>
+				<input type="text" name="title" value="<?= $editArticle->getTitle(); ?>">
 				<textarea id="content" name="content">
-					<?= $comment->getContent(); ?>
+					<?= $editArticle->getContent(); ?>
 				</textarea>
-				<input type="hidden" name="reported" value="FALSE">
-				<input type="hidden" name="comId" value="<?= $comment->getId(); ?>">
+				<input type="hidden" name="artId" value="<?= $editArticle->getId(); ?>">
 				<p class="center-align">
-					<input class="btn green" type="submit" value="Modérer">
-					<a class="btn red" href="./index.php?comDelete&comId=<?= $comment->getId(); ?>">Supprimer</a>
+					<input class="btn green" type="submit" value="Valider">
+					<a class="btn red" href="./index.php?sign-in">Annuler</a>
 				</p>
 				
 			</form>

@@ -34,4 +34,18 @@ class Comment_controler
         require(APP_ROOT . '/Vue/one_comment.php');
         //return $comment;      
     }
+
+    public function deleteComment($commentId)
+    {
+        $instance = Database::getdatabase();
+        $requete = new Comment_manager($instance);
+        $requete->deleteComment($commentId);
+    }
+
+    public function updateComment($data)
+    {
+        $instance = Database::getdatabase();
+        $requete = new Comment_manager($instance);
+        $requete->updateComment($data);
+    }
 }
