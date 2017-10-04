@@ -1,6 +1,6 @@
 <nav>
   <div class="nav-wrapper">
-    <a href="./index.php" class="brand-logo">Administration</a>
+    <a href="./index.php" class="brand-logo"></a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><a href="./index.php?sign-in">Accueil</a></li>
       <li><a href="./index.php">Quitter</a></li>
