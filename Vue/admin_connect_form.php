@@ -21,7 +21,7 @@
 	  </div>
 	  <div class="row">
 	    <div class="col s12">
-	    	<label for="content">Commentaire</label>
+	    	<label for="content">Mot de passe</label>
 	      <input id="validPassword" name="validPassword" type="password" class="validate">
 	      
 	         	<span><?php if (!empty($tabError['validPassword'])) { echo $tabError['validPassword']; } ?></span> 
